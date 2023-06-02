@@ -80,7 +80,7 @@ deploy:
     - python -m build
     - TWINE_PASSWORD=${CI_JOB_TOKEN} CURL_CA_BUNDLE="" TWINE_USERNAME=gitlab-ci-token python -m twine upload 
       --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/* 
-      --cert /ca/vertices_root_certification_authority.pem
+      --cert /ca/root/vertices_root_certification_authority.pem
 
   environment: production
 
