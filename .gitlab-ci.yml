@@ -28,9 +28,6 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  - ls /etc/gitlab-runner/certs
-  - ls ~/.gitlab-runner/certs/
-
   - pip install virtualenv
   - virtualenv venv
   - source venv/bin/activate
@@ -77,8 +74,13 @@ include:
 deploy:
   stage: deploy
   script: 
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}git.vertices.tech/infrastructure/certificate ./temp
+    - ls -al
     - pip install build twine
     - python -m build
-    - TWINE_PASSWORD=${CI_JOB_TOKEN} CURL_CA_BUNDLE="" TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/*
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} CURL_CA_BUNDLE="" TWINE_USERNAME=gitlab-ci-token python -m twine upload \
+      --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/* \
+      --cert ./temp/root/vertices_root_certification_authority.pem
+
   environment: production
 
