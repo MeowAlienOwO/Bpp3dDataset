@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bpp3d_dataset"
+version = "0.0.1"
+authors = [
+    { name = "Zhang Huayan", email = "huayan.zhang@nottingham.edu.cn"}
+]
+description="3D BPP Dataset"
+requires-python = ">=3.8"
+keywords = [
+"bin packing"
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
