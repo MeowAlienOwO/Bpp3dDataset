@@ -74,7 +74,7 @@ include:
 deploy:
   stage: deploy
   script: 
-    - git -c http.sslVerify=false clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.vertices.tech/infrastructure/certificate ./temp
+    - git -c http.sslVerify=false clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.vertices.tech/infrastructure/certificates ./temp
     - ls -al ./temp/root/
     - pip install build twine
     - python -m build
