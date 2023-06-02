@@ -78,8 +78,8 @@ deploy:
     - git -c http.sslVerify=false clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.vertices.tech/infrastructure/certificates /ca
     - pip install build twine
     - python -m build
-    - TWINE_PASSWORD=${CI_JOB_TOKEN} CURL_CA_BUNDLE="" TWINE_USERNAME=gitlab-ci-token python -m twine upload \
-      --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/* \
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} CURL_CA_BUNDLE="" TWINE_USERNAME=gitlab-ci-token python -m twine upload 
+      --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/* 
       --cert /ca/vertices_root_certification_authority.pem
 
   environment: production
