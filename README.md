@@ -24,7 +24,7 @@
 # Development
 
 - POSIX环境(Unix/Linux)或者Docker环境, Windows下开发请使用WSL/Docker
-- 遵循 PEP8 规范
+- 遵循 PEP8 规范, 使用 `ruff` 作为linter 
 - 避免使用`sys.path.append`, 使用临时的变量替代: `export PYTHONPATH="YOUR/PATH:$PYTHONPATH"` 或者走包安装流程
 
 

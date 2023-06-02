@@ -19,3 +19,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+
+
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.pydocstyle]
+convention = "numpy"
+
+# if you want to just import in __init__.py
+# [tool.ruff.per-file-ignores]
+# "__init__.py" = ["E402"]
