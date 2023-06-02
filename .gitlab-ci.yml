@@ -28,8 +28,9 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  - ls ~/.gitlab-rubnner/certs/
   - ls /etc/gitlab-runner/certs
+  - ls ~/.gitlab-runner/certs/
+
   - pip install virtualenv
   - virtualenv venv
   - source venv/bin/activate
