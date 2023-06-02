@@ -73,6 +73,9 @@ include:
 
 deploy:
   stage: deploy
-  script: echo "Define your deployment script!"
+  script: 
+    - pip install build twine
+    - python -m build
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/groups/${CI_PROJECT_NAMESPACE_ID}/-/packages/pypi dist/*
   environment: production
 
