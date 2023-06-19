@@ -1,4 +1,4 @@
-from distribution import Distribution
+from bpp3d_dataset.utils.distributions.distribution import Distribution
 from typing import List
 import numpy as np
 from scipy.stats import poisson, binom

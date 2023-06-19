@@ -2,7 +2,7 @@ from typing import List, Dict
 
 
 
-class Instance(object):
+class BppInstance(object):
     """An instance is an immutable representation of a certain problem.
     The problem instance specifies:
     1. immutable sequence of item

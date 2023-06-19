@@ -1,4 +1,4 @@
-from distribution import Distribution
+from bpp3d_dataset.utils.distributions.distribution import Distribution
 import numpy as np
 
 class Periodic(Distribution):

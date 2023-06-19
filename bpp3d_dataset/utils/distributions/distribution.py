@@ -1,6 +1,4 @@
-from typing import List
 from abc import abstractclassmethod
-import numpy as np
 
 class Distribution(object):
     """Distributions for sampling items

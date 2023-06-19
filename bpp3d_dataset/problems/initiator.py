@@ -1,13 +1,12 @@
 import json
-import numpy as np
 
-from typing import List,Tuple
-from instance import Instance
-from bpp3d_dataset.utils.distribution.distribution import Discrete
+from typing import List
+from bpp3d_dataset.problems.bppinstance import BppInstance
+from bpp3d_dataset.utils.distributions import Discrete
 
 
 class ProblemInitiator(object):
-    def initialize_problem(self) -> List['Instance']:
+    def initialize_problem(self) -> List['BppInstance']:
         raise NotImplementedError
 
 
@@ -32,8 +31,8 @@ class Bpp1DJsonInitiator(ProblemInitiator):
         with open(problem_file, 'r') as f:
             self.data = json.load(f)
 
-    def initialize_problem(self) -> List[Instance]:
-        return [Instance(inst["sequence"], inst["configuration"]) 
+    def initialize_problem(self) -> List[BppInstance]:
+        return [BppInstance(inst["sequence"], inst["configuration"]) 
                     for inst in self.data]
 
 class Bpp1DRandomInitiator(ProblemInitiator):
@@ -45,12 +44,13 @@ class Bpp1DRandomInitiator(ProblemInitiator):
         self.capacity = capacity
 
 
-    def initialize_problem(self) -> List[Instance]:
+    def initialize_problem(self) -> List[BppInstance]:
         configuration = {
             "distribution": self.distribution.prob_dict,
             "capacity": self.capacity,
             "item_num": self.item_num
         }
 
-        return [Instance(self.distribution.sample(self.item_num)
+
+        return [BppInstance(self.distribution.sample(self.item_num)
             , configuration) for _ in range(self.instance_num)]

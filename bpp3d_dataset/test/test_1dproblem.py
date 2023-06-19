@@ -1,8 +1,6 @@
 from pathlib import Path
-from bpp3d_dataset.problem import Problem, Bpp1DRandomInitator, Bpp1DJsonInitiator, Storage
-from bpp3d_dataset.utils.distribution import Discrete
-import numpy as np
-import os
+from bpp3d_dataset.utils.distributions import Discrete
+from bpp3d_dataset.problems import Problem, Bpp1DRandomInitiator, Bpp1DJsonInitiator, Storage
 import json
 
 
@@ -37,13 +35,14 @@ def test_readproblem(tmp_path: Path) -> None:
 
 
 def test_random_problem(tmp_path: Path) -> None:
-    capacity= 10,
-    item_num = 10,
-    instance_num = 3,
+    capacity= 10
+    item_num = 10
+    instance_num = 3
     distribution = Discrete([0.2, 0.3, 0.1, 0.2, 0.2], [1,2,3,4,5])
     
 
-    problem = Problem(Bpp1DRandomInitator(capacity, item_num, instance_num, distribution))
+    problem = Problem(Bpp1DRandomInitiator(capacity, item_num, 
+                                            instance_num, distribution))
 
     storage = Storage(problem)
     storage.save(tmp_path / "problem2.json")
