@@ -34,3 +34,9 @@ convention = "numpy"
 # if you want to just import in __init__.py
 # [tool.ruff.per-file-ignores]
 # "__init__.py" = ["E402"]
+[tool.mypy]
+[[tool.mypy.overrides]]
+module = [
+    "scipy"
+]
+ignore_missiong_imports = true

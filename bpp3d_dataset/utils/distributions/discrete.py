@@ -1,7 +1,7 @@
 from bpp3d_dataset.utils.distributions.distribution import Distribution
 from typing import List
 import numpy as np
-from scipy.stats import poisson, binom
+from scipy.stats import poisson, binom 
 
 class Discrete(Distribution):
     def __init__(self, probs:List[float], types:List) -> None:

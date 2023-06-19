@@ -1,5 +1,6 @@
 from .problem import Problem
 import numpy as np
+from pathlib import Path
 import json
 
 class Storage:
@@ -9,7 +10,7 @@ class Storage:
         self.problem = problem
 
 
-    def save(self, filepath: str):
+    def save(self, filepath: Path):
         """Save problem instance to target file
         """
 
