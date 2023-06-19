@@ -15,9 +15,6 @@ class Storage:
 
         datadict = []
         for inst in self.problem:
-            # obj = dict()
-            # obj["configuration"] = inst.configuration
-            # obj["sequence"] = inst.sequence
             datadict.append({
                 "configuration": inst.configuration,
                 "sequence": inst.sequence
