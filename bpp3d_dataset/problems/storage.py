@@ -27,6 +27,8 @@ def store_problem(problem: Problem, filepath: Path):
 
 
 class NpEncoder(json.JSONEncoder):
+
+
     """deal with numpy output
     see https://stackoverflow.com/questions/50916422/python-typeerror-object-of-type-int64-is-not-json-serializable
     """
