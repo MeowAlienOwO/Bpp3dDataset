@@ -32,8 +32,4 @@ class Problem(object):
     def __getitem__(self, key):
         return self.instances[key]
 
-    
-
-
-
 
