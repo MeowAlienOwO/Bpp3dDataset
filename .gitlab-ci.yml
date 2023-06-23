@@ -73,6 +73,8 @@ include:
 
 deploy:
   stage: deploy
+  rules:
+    if: $CI_COMMIT_REF_NAME =~ /^v\d+\.\d+\.\d+/
   script: 
     - mkdir /ca
     - git -c http.sslVerify=false clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.vertices.tech/infrastructure/certificates /ca
