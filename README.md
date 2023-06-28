@@ -20,6 +20,11 @@
 
 # How to use
 
+## Install
+
+```bash
+python -m pip install .
+```
 
 # Development
 
