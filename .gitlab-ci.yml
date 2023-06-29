@@ -28,7 +28,6 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  - curl -sSL https://install.python-poetry.org | python3 -
   # - pip install virtualenv
   # - virtualenv venv
   # - source venv/bin/activate
@@ -38,7 +37,8 @@ test:
   script:
     - ls -al bpp3d_dataset/data
     - cat pyproject.toml
-    - pip install ruff tox tox-poetry # you can also use tox
+    - curl -sSL https://install.python-poetry.org | python3 -
+    - pip install tox # you can also use tox
     # - pip install --editable ".[test]"
     - tox -p all
 
