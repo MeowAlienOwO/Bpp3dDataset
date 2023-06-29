@@ -28,13 +28,14 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  # - pip install virtualenv
-  # - virtualenv venv
-  # - source venv/bin/activate
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
 
 test:
   stage: test
   script:
+    - ls -al
     - pip install build ruff tox  # you can also use tox
     # - pip install --editable ".[test]"
     - python -m build
