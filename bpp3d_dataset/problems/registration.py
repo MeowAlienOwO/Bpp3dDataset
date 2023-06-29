@@ -27,11 +27,11 @@ def parse_prob_name(id: str) -> Tuple[str, int, int | None]:
         raise ValueError(f"Malformed problem id: {id}")
     name, dim, ver = match.group("name", "dim", "version")
 
-    if dim is not None:
-        dim = int(dim)
+    name = str(name)
+    dim = int(dim) if dim is not None else 1
+    ver = int(ver) if ver is not None else None
     
-    if ver is not None:
-        ver = int(ver)
+
     
     return name, dim, ver
     

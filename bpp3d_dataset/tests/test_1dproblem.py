@@ -1,8 +1,8 @@
 from pathlib import Path
-from bpp3d_dataset.problems import ProblemSpec
 from bpp3d_dataset.utils.distributions import Discrete
 from bpp3d_dataset.problems import Problem, Bpp1DRandomInitiator, Bpp1DJsonInitiator, Storage
 from bpp3d_dataset.problems import make_bpp
+from bpp3d_dataset.problems.problem import ProblemSpec
 import json
 
 

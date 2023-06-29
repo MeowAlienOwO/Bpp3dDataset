@@ -1,10 +1,8 @@
-from .problem import Problem, ProblemSpec
+from .problem import Problem
 from .bppinstance import BppInstance
 from .storage import Storage, store_problem
 from .initiator import (ProblemInitiator, 
                         Bpp1DJsonInitiator, Bpp1DRandomInitiator)
-import os
-
 from .registration import register_bpp, make_bpp
 from pathlib import Path
 

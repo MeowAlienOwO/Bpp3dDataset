@@ -16,8 +16,9 @@ class ProblemInitiator(object):
         return self._dim
 
     @dim.setter
-    def dim(self, value: int) -> int:
+    def dim(self, value: int) -> None:
         self._dim = value
+
 
 
 class Bpp1DJsonInitiator(ProblemInitiator):

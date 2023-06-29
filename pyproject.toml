@@ -24,6 +24,13 @@ dependencies = [
     "scipy"
 ]
 
+[options]
+zip_safe = true
+include_package_data = true
+
+[options.package_data]
+bpp3d_dataset = "data/*.json"
+
 
 [tool.ruff]
 line-length = 120
@@ -34,9 +41,15 @@ convention = "numpy"
 # if you want to just import in __init__.py
 # [tool.ruff.per-file-ignores]
 # "__init__.py" = ["E402"]
+
 [tool.mypy]
+
+exclude = [
+    "tests/*"
+]
+warn_unused_configs = true
 [[tool.mypy.overrides]]
 module = [
-    "scipy"
+    "scipy.*"
 ]
 ignore_missing_imports = true
