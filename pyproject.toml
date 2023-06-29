@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bpp3d_dataset"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
     { name = "Zhang Huayan", email = "huayan.zhang@nottingham.edu.cn"}
 ]
@@ -29,7 +29,7 @@ zip_safe = true
 include_package_data = true
 
 [options.package_data]
-bpp3d_dataset = "data/*.json"
+bpp3d_dataset = "*.json"
 
 
 [tool.ruff]
