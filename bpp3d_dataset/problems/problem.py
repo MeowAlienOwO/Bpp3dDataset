@@ -1,16 +1,28 @@
-from typing import List
-from bpp3d_dataset.problems.bppinstance import BppInstance
+from typing import List, NamedTuple
+from .bppinstance import BppInstance
 from .initiator import ProblemInitiator
 
-class Problem(object):
+class ProblemSpec(NamedTuple):
+    name: str
+    dim: int = 1
+    type: str | None = None
+
+
+
+
+class Problem:
 
     """Problem Basic Class
     A problem contains a series of immutable problem
     instances.
     """
 
-    def __init__(self, initiator: ProblemInitiator):
+    def __init__(self, initiator: ProblemInitiator, spec: ProblemSpec | None = None):
+        if spec is not None:
+            assert initiator.dim == spec.dim
         self.instances = initiator.initialize_problem()
+        self.spec = spec
+        
 
     @property
     def instances(self) -> List[BppInstance]:

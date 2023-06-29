@@ -28,14 +28,18 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
+  # - pip install virtualenv
+  # - virtualenv venv
+  # - source venv/bin/activate
 
 test:
   stage: test
   script:
-    - pip install ruff tox  # you can also use tox
+    - ls -al bpp3d_dataset/data
+    - cat pyproject.toml
+    - curl -sSL https://install.python-poetry.org | python3 -
+    - export PATH="/root/.local/bin:$PATH"
+    - pip install tox # you can also use tox
     # - pip install --editable ".[test]"
     - tox --verbose
 
