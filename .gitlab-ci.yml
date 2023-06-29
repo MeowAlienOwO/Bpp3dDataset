@@ -28,9 +28,9 @@ stages:
 
 before_script:
   - python --version ; pip --version  # For debugging
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
+  # - pip install virtualenv
+  # - virtualenv venv
+  # - source venv/bin/activate
 
 test:
   stage: test
