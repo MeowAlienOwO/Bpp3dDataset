@@ -31,6 +31,8 @@ include_package_data = true
 [options.package_data]
 bpp3d_dataset = "*.json"
 
+[tool.setuptools.package-data]
+bpp3d_dataset = ["*.json"]
 
 [tool.ruff]
 line-length = 120
