@@ -2,6 +2,7 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+
 [project]
 name = "bpp3d_dataset"
 version = "0.0.4"
@@ -11,7 +12,7 @@ authors = [
 description="3D BPP Dataset"
 requires-python = ">=3.8"
 keywords = [
-"bin packing"
+    "bin packing"
 ]
 classifiers = [
     "Development Status :: 1 - Planning",
@@ -24,18 +25,23 @@ dependencies = [
     "scipy"
 ]
 
+
 [options]
 zip_safe = true
 include_package_data = true
 
+
 [options.package_data]
 bpp3d_dataset = "*.json"
+
 
 [tool.setuptools.package-data]
 bpp3d_dataset = ["*.json"]
 
+
 [tool.ruff]
 line-length = 120
+
 
 [tool.ruff.pydocstyle]
 convention = "numpy"
@@ -45,11 +51,12 @@ convention = "numpy"
 # "__init__.py" = ["E402"]
 
 [tool.mypy]
-
 exclude = [
     "tests/*"
 ]
 warn_unused_configs = true
+
+
 [[tool.mypy.overrides]]
 module = [
     "scipy.*"
