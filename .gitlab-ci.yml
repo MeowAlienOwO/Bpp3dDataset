@@ -30,6 +30,10 @@ stages:
 
 before_script:
 
+  - conda create -n bpp python=3.11
+  - conda init bash
+  - source ~/.bashrc
+  - conda activate bpp
   - python --version ; pip --version  
   # - pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
   # For debugging
@@ -39,8 +43,7 @@ before_script:
 test:
   stage: test
   script:
-    - conda create -n bpp python=3.11
-    - conda activate bpp
+
     - pip install tox poetry
     # - pipx install poetry -i https://pypi.tuna.tsinghua.edu.cn/simple
     - poetry config --list
@@ -48,6 +51,8 @@ test:
 
 sast:
   stage: test
+  before_script:
+    - ''
 include:
 - template: Security/SAST.gitlab-ci.yml
 
@@ -76,8 +81,6 @@ deploy:
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^v\d+\.\d+\.\d+/
   script: 
-    - conda create -n bpp python=3.11
-    - conda activate bpp
     - mkdir /ca
     - git -c http.sslVerify=false clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.vertices.tech/infrastructure/certificates /ca
     - pip install build twine -i https://pypi.tuna.tsinghua.edu.cn/simple
