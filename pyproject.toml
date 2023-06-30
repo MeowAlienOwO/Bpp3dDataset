@@ -66,15 +66,21 @@ authors = ["Huayan Zhang <huayan.zhang@nottingham.edu.cn>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.9,<3.13"
 numpy = "^1.25.0"
 scipy = "^1.11.1"
 
 [tool.poetry.group.dev.dependencies]
-
 pytest = "^7.4.0"
 mypy = "^1.4.1"
 ruff = "^0.0.275"
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+
+
 
 [build-system]
 requires = ["poetry-core"]
