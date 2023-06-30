@@ -32,6 +32,7 @@ before_script:
   - conda init bash
   - source ~/.bashrc
   - conda install mamba -c conda-forge
+  - mamba init
   - mamba create -n bpp python=3.11
   - mamba activate bpp
   - python --version ; pip --version  
