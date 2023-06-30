@@ -29,23 +29,19 @@ stages:
 - deploy
 
 before_script:
-
-  - conda create -n bpp python=3.11
   - conda init bash
   - source ~/.bashrc
-  - conda activate bpp
+  - conda install mamba -c conda-forge
+  - mamba create -n bpp python=3.11
+  - mamba activate bpp
   - python --version ; pip --version  
-  # - pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
-  # For debugging
-  # - ls -al bpp3d_dataset/data
-  # - cat pyproject.toml
+
 
 test:
   stage: test
   script:
 
     - pip install tox poetry
-    # - pipx install poetry -i https://pypi.tuna.tsinghua.edu.cn/simple
     - poetry config --list
     - tox -p all
 
