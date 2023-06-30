@@ -11,8 +11,8 @@ image: continuumio/miniconda3
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
-# variables:
-#   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/topics/caching/
@@ -31,8 +31,8 @@ stages:
 before_script:
   - conda init bash
   - source ~/.bashrc
-  - conda install mamba -c conda-forge
-  - mamba create -n bpp python=3.11
+  # - conda install mamba -c conda-forge
+  - conda create -q -y -n bpp python=3.11
   - conda activate bpp
   - python --version ; pip --version  
 
