@@ -31,8 +31,8 @@ stages:
 before_script:
   - conda init bash
   - source ~/.bashrc
-  # - conda install mamba -c conda-forge
-  - conda create -q -y -n bpp python=3.11
+  - conda install mamba -c conda-forge
+  - mamba create -q -y -n bpp python=3.11
   - conda activate bpp
   - python --version ; pip --version  
 
