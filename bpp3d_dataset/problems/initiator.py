@@ -22,8 +22,8 @@ class ProblemInitiator(object):
 
 
 class Bpp1DJsonInitiator(ProblemInitiator):
-    """Initialize problem with a json file.
-    The problem json file defines as following:
+    """Initialize problem with a json file or string.
+    The problem json defines as following:
     [
         {
             "configuration": {...},
@@ -37,23 +37,41 @@ class Bpp1DJsonInitiator(ProblemInitiator):
 
     """
 
-    def __init__(self, problem_file: Path, dim: int=1):
-        with open(problem_file, 'r') as f:
-            self.data = json.load(f)
-            self._dim = dim
+    def __init__(self, problem_data: Path | str):
+        """
+
+        Args:
+            problem_data (Path | str): problem data file or string, must in correct json format
+            dim (int, optional): dimension number. Defaults to 1.
+        """
+        if isinstance(problem_data, Path):
+            with open(problem_data, 'r') as f:
+                self.data = json.load(f)
+        else:
+            self.data = json.loads(problem_data)
+        self.dim = 1
 
     def initialize_problem(self) -> List[BppInstance]:
         return [BppInstance(inst["sequence"], inst["configuration"]) 
                     for inst in self.data]
 
+
 class Bpp1DRandomInitiator(ProblemInitiator):
     def __init__(self, capacity: int, item_num: int, 
-                    instance_num: int, distribution: Discrete, dim=1):
+                    instance_num: int, distribution: Discrete):
+        """
+
+        Args:
+            capacity (int): bin capacity
+            item_num (int): number of items should be generated for each instance
+            instance_num (int): number of instances in the problem set
+            distribution (Discrete): sample instance by distribution
+        """
         self.item_num = item_num
         self.instance_num = instance_num
         self.distribution = distribution
         self.capacity = capacity
-        self.dim = dim
+        self.dim = 1
 
 
     def initialize_problem(self) -> List[BppInstance]:
