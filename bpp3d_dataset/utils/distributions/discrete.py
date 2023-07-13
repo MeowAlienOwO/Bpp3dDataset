@@ -4,22 +4,22 @@ import numpy as np
 from scipy.stats import poisson, binom 
 
 class Discrete(Distribution):
-    def __init__(self, probs:List[float], types:List) -> None:
+    def __init__(self, probs:List[float], items:List) -> None:
         super(Discrete, self).__init__()
         assert np.isclose(np.sum(probs), 1), \
             f"The sum of probabilities does not sum to 1: {probs}"
-        assert len(probs) == len(types)
+        assert len(probs) == len(items)
 
         self.probs = probs
 
-        self.types = types
+        self.items = items
 
     @property
     def prob_dict(self):
-        return {c:p for c, p in zip(self.types, self.probs)}
+        return {c:p for c, p in zip(self.items, self.probs)}
 
     def sample(self, num):
-        return np.random.choice(self.types, size=num,p=self.probs)
+        return np.random.choice(self.items, size=num,p=self.probs)
 
     def p(self, x):
         return self.prob_dict.get(x, 0)
@@ -29,21 +29,21 @@ class Discrete(Distribution):
                                for k, p in self.prob_dict.items()]) + "}"
 
 class Uniform(Discrete):
-    def __init__(self, types: List) -> None:
-        super(Uniform, self).__init__([1 / len(types) for _ in types], types)
+    def __init__(self, items: List) -> None:
+        super(Uniform, self).__init__([1 / len(items) for _ in items], items)
 
 class Binomial(Discrete):
-    def __init__(self, types:List, p:float=0.5) -> None:
+    def __init__(self, items:List, p:float=0.5) -> None:
 
 
-        probs = [binom.pmf(i, len(types), p) for i in range(len(types))]
+        probs = [binom.pmf(i, len(items), p) for i in range(len(items))]
         probs = [ p / sum(probs) for p in probs]
-        super(Binomial, self).__init__(probs, types)
+        super(Binomial, self).__init__(probs, items)
 
 class Poisson(Binomial):
-    def __init__(self, types, mu):
+    def __init__(self, items, mu):
 
-        probs = [poisson.pmf(i, mu) for i in range(len(types))]
+        probs = [poisson.pmf(i, mu) for i in range(len(items))]
         probs = [ p / sum(probs) for p in probs]
         print("Poission Probs", probs)
-        super(Binomial, self).__init__(probs, types)
+        super(Binomial, self).__init__(probs, items)

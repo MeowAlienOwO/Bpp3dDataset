@@ -7,16 +7,16 @@ class Periodic(Distribution):
         self.distrs = distrs
         self.sample_step = sample_step
         # self.types = sorted(list(set().union([distr.types for distr in distrs])))
-        self.types = sorted(list(set([t for d in distrs for t in d.types])))
+        self.items = sorted(list(set([t for d in distrs for t in d.items])))
 
     def sample(self, num):
         steps = (num // self.sample_step) + 1
-        items = [self.distrs[i % len(self.distrs)].sample(self.sample_step) for i in range(steps)]
-        items = np.concatenate(items)
+        instances = [self.distrs[i % len(self.distrs)].sample(self.sample_step) for i in range(steps)]
+        instances = np.concatenate(instances)
         # for i in range(steps):
             
             # items += self.distrs[i % len(self.distrs)].sample(self.sample_step)
-        return items[:num]
+        return instances[:num]
 
     def p(self, x, method='first'):
         """return distribution for first one or total distribution
