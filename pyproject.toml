@@ -74,6 +74,7 @@ scipy = '^1.11.1'
 pytest = "^7.4.0"
 mypy = "^1.4.1"
 ruff = "^0.0.275"
+tox = "^4.6.4"
 
 
 [build-system]
