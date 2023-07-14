@@ -40,7 +40,8 @@ before_script:
 test:
   stage: test
   script:
-    - pip install tox poetry
+    - pip install poetry
+    - poetry install
     - poetry config --list
     - tox -p all
 
