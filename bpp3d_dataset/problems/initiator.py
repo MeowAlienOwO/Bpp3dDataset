@@ -55,7 +55,6 @@ class Bpp1DJsonInitiator(ProblemInitiator):
         self.dim = 1
 
     def initialize_problem(self) -> List[BppInstance]:
-        print(self.data)
         return [BppInstance(inst["sequence"], inst["configuration"]) 
                     for inst in self.data['instances']]
 
