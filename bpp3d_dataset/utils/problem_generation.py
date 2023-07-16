@@ -57,11 +57,11 @@ def discrete1d_generate(capacity: int,
     return problem
 
 def generate_all_1d(data_path: Path):
-    types = [i for i in range(10, 60, 5)]
-    uniform1d_generate(100, types, 1000, 100, data_path / "Uniform1D.json")
-    normal1d_generate(100, types, 1000, 100, data_path / "Normal1D.json")
+    items = [i for i in range(10, 60, 5)]
+    uniform1d_generate(100, items, 1000, 100, data_path / "Uniform1D.json")
+    normal1d_generate(100, items, 1000, 100, data_path / "Normal1D.json")
     discrete1d_generate(100,  1000, 100, 
-                        Discrete([0.2, 0.05, 0.1, 0.12,0.08, 0.05, 0.03, 0.01, 0.18, 0.18], types), 
+                        Discrete([0.2, 0.05, 0.1, 0.12,0.08, 0.05, 0.03, 0.01, 0.18, 0.18], items), 
                         data_path / "Discrete1D.json")
     
 if __name__ == "__main__":

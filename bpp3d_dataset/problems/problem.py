@@ -1,5 +1,4 @@
-from typing import List, NamedTuple
-from .bppinstance import BppInstance
+from typing import NamedTuple
 from .initiator import ProblemInitiator
 
 class ProblemSpec(NamedTuple):
@@ -11,7 +10,6 @@ class ProblemSpec(NamedTuple):
 
 
 class Problem:
-
     """Problem Basic Class
     A problem contains a series of immutable problem
     instances.
@@ -22,16 +20,9 @@ class Problem:
             assert initiator.dim == spec.dim
         self.instances = initiator.initialize_problem()
         self.spec = spec
-        
+        self.configuration = initiator.initialize_configuration()
 
-    @property
-    def instances(self) -> List[BppInstance]:
-        return self._instances
 
-    @instances.setter
-    def instances(self, value: List[BppInstance]):
-        self._instances = value
-    
     def __len__(self):
         return len(self.instances)
 

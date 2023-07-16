@@ -6,20 +6,23 @@ from bpp3d_dataset.problems.problem import ProblemSpec
 import json
 
 
-PROBLEM_1D = [
-    {
-        "configuration":{
-            "capacity": 10
-        },
-        "sequence": list(range(1, 11)),
-    },
-    {
-        "configuration":{
-            "capacity": 15
-        },
-        "sequence": list(range(1, 11))[::-1],
-    },
-]
+PROBLEM_1D = {
+    "configuration": {"capacity": 10},
+    "instances": [
+            {
+                "configuration":{
+                    "capacity": 10
+                },
+                "sequence": list(range(1, 11)),
+            },
+            {
+                "configuration":{
+                    "capacity": 10
+                },
+                "sequence": list(range(1, 11))[::-1],
+            },
+        ]
+    }
 
 
 def test_readproblem(tmp_path: Path) -> None:
@@ -30,7 +33,7 @@ def test_readproblem(tmp_path: Path) -> None:
     problem = Problem(Bpp1DJsonInitiator(tmp_path / "problem.json"), ProblemSpec('test1d'))
     assert len(problem.instances) == 2
 
-    for prob_instance, real_instance in zip(problem.instances, PROBLEM_1D):
+    for prob_instance, real_instance in zip(problem.instances, PROBLEM_1D['instances']):
         assert len(prob_instance) == len(real_instance["sequence"])
         for i in range(len(real_instance)):
             assert prob_instance[i] == real_instance["sequence"][i]

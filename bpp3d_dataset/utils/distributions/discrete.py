@@ -26,7 +26,7 @@ class Discrete(Distribution):
 
     def __repr__(self) -> str:
         return "{" + ",".join([f"{k}:{p} " 
-                               for k, p in self.prob_dict.items()]) + "}"
+                                for k, p in self.prob_dict.items()]) + "}"
 
 class Uniform(Discrete):
     def __init__(self, items: List) -> None:

@@ -44,7 +44,6 @@ convention = "numpy"
 # if you want to just import in __init__.py
 # [tool.ruff.per-file-ignores]
 # "__init__.py" = ["E402"]
-
 [tool.mypy]
 exclude = [
     "tests/*"
@@ -60,7 +59,7 @@ ignore_missing_imports = true
 
 [tool.poetry]
 name = "bpp3d_dataset"
-version = "0.0.9"
+version = "0.1.0"
 description = ""
 authors = ["Huayan Zhang <huayan.zhang@nottingham.edu.cn>"]
 readme = "README.md"
@@ -69,6 +68,7 @@ readme = "README.md"
 python = "~3.11"
 numpy = "1.24.4"
 scipy = '^1.11.1'
+typer = "^0.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

@@ -16,14 +16,19 @@ class Storage:
 
 
 def store_problem(problem: Problem, filepath: Path):
-    datadict = []
-    for inst in problem:
-        datadict.append(
-            {"configuration": inst.configuration, "sequence": inst.sequence}
-        )
+
+    data = {
+        "instances": [
+            {
+                "configuration": inst.configuration,
+                "sequence": inst.sequence
+            } 
+            for inst in problem],
+        "configuration": problem.configuration
+    }
 
     with open(filepath, "w") as f:
-        json.dump(datadict, f, cls=NpEncoder)
+        json.dump(data, f, cls=NpEncoder)
 
 
 class NpEncoder(json.JSONEncoder):

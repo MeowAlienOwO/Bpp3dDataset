@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from typing import List
+from typing import Dict, List
 from bpp3d_dataset.problems.bppinstance import BppInstance
 from bpp3d_dataset.utils.distributions import Discrete
 
@@ -9,6 +9,9 @@ from bpp3d_dataset.utils.distributions import Discrete
 class ProblemInitiator(object):
 
     def initialize_problem(self) -> List['BppInstance']:
+        raise NotImplementedError
+
+    def initialize_configuration(self) -> Dict:
         raise NotImplementedError
 
     @property
@@ -52,8 +55,12 @@ class Bpp1DJsonInitiator(ProblemInitiator):
         self.dim = 1
 
     def initialize_problem(self) -> List[BppInstance]:
+        print(self.data)
         return [BppInstance(inst["sequence"], inst["configuration"]) 
-                    for inst in self.data]
+                    for inst in self.data['instances']]
+
+    def initialize_configuration(self) -> Dict:
+        return self.data['configuration']
 
 
 class Bpp1DRandomInitiator(ProblemInitiator):
@@ -72,15 +79,20 @@ class Bpp1DRandomInitiator(ProblemInitiator):
         self.distribution = distribution
         self.capacity = capacity
         self.dim = 1
-
-
-    def initialize_problem(self) -> List[BppInstance]:
-        configuration = {
+    
+    @property
+    def configuration(self) -> Dict:
+        return {
             "distribution": self.distribution.prob_dict,
             "capacity": self.capacity,
             "item_num": self.item_num
         }
 
 
+    def initialize_problem(self) -> List[BppInstance]:
+
         return [BppInstance(self.distribution.sample(self.item_num)
-            , configuration) for _ in range(self.instance_num)]
+            , self.configuration) for _ in range(self.instance_num)]
+
+    def initialize_configuration(self) -> Dict:
+        return self.configuration
