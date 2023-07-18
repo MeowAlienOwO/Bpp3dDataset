@@ -62,3 +62,5 @@ def test_make_problem() -> None:
     make_bpp("Discrete1D")
     make_bpp("Normal1D")
     make_bpp("Uniform1D")
+
+    

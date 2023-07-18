@@ -2,6 +2,16 @@ from bpp3d_dataset.utils.distributions.distribution import Distribution
 from typing import List
 import numpy as np
 from scipy.stats import poisson, binom 
+from enum import Enum
+
+class ValidDiscrete(str, Enum):
+    discrete = 'discrete'
+    uniform = 'uniform'
+    normal = 'normal'
+    binomial = 'binomial'
+    poission = 'poission'
+
+    
 
 class Discrete(Distribution):
     def __init__(self, probs:List[float], items:List) -> None:
@@ -47,3 +57,20 @@ class Poisson(Binomial):
         probs = [ p / sum(probs) for p in probs]
         print("Poission Probs", probs)
         super(Binomial, self).__init__(probs, items)
+
+def generate_discrete(items: List, 
+                        dist: ValidDiscrete | str = ValidDiscrete.uniform, 
+                        *args, **kwargs):
+    
+
+    if dist == ValidDiscrete.uniform:
+        return Uniform(items)
+    elif dist == ValidDiscrete.normal:
+        return Binomial(items)
+    elif dist == ValidDiscrete.binomial:
+        return Binomial(items, *args, **kwargs)
+    elif dist == ValidDiscrete.poission:
+        return Poisson(items, *args, **kwargs)
+    elif dist == ValidDiscrete.discrete:
+        assert 'probs' in kwargs
+        return Discrete(probs=kwargs['probs'], items=items)

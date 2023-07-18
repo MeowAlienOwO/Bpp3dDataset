@@ -1,5 +1,5 @@
 from .distribution import Distribution
-from .discrete import Discrete, Poisson, Binomial, Uniform
+from .discrete import Discrete, Poisson, Binomial, Uniform, generate_discrete
 from .periodic import Periodic
 
 __all__ = [
@@ -8,5 +8,6 @@ __all__ = [
     "Periodic",
     "Binomial",
     "Uniform",
-    "Poisson"
+    "Poisson",
+    "generate_discrete"
 ]
