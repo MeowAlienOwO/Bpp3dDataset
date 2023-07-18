@@ -1,4 +1,5 @@
 
+
 python -m bpp3d_dataset.main generate 1d uniform -C 100 -N 1000 -I 10 -d bpp3d_dataset/data
 python -m bpp3d_dataset.main generate 1d normal -C 100 -N 1000 -I 10 -d bpp3d_dataset/data
 python -m bpp3d_dataset.main generate 1d discrete -C 100 -N 1000 -I 10 -d bpp3d_dataset/data \

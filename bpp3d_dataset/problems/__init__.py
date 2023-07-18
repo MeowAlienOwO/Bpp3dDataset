@@ -3,13 +3,10 @@ from .bppinstance import BppInstance
 from .storage import Storage, store_problem
 from .initiator import (ProblemInitiator, 
                         Bpp1DJsonInitiator, Bpp1DRandomInitiator)
-from .registration import register_bpp, make_bpp
+from .registration import register_bpp, make_bpp, check_bpp_registered
 from pathlib import Path
 
 _data_path  = Path(__file__).parent.parent.absolute() / "data"
-
-# Now not lazy loading, when modify the data file, 
-# following registration should be commented
 
 register_bpp(make_bpp(
     "Normal1D", 
@@ -30,8 +27,9 @@ __all__ = [
     "Storage",
     "register_bpp",
     "make_bpp",
+    "check_bpp_registered",
     "store_problem",
     "ProblemInitiator",
     "Bpp1DJsonInitiator",
-    "Bpp1DRandomInitiator"
+    "Bpp1DRandomInitiator",
 ]

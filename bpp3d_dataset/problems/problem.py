@@ -21,26 +21,26 @@ class Problem:
         if spec is not None:
             assert initiator.dim == spec.dim
         self.initiator = initiator
-        self.instances = None
-        self.configuration = None
-        # self.instances = initiator.initialize_problem()
+        self._instances: List[BppInstance] = []
+        self._configuration: Dict = {}
         self.spec = spec
+        # self.instances = initiator.initialize_problem()
         # self.configuration = initiator.initialize_configuration()
 
     @property 
     def configuration(self) -> Dict:
-        if self._configuration is None:
+        if not self._configuration :
             self._configuration = self.initiator.initialize_configuration()
         return self._configuration
 
     @configuration.setter
-    def configuration(self, value: Dict | None):
+    def configuration(self, value: Dict):
         self._configuration = value
         
 
     @property
     def instances(self) -> List[BppInstance]:
-        if self._instances is None:
+        if not self._instances:
             self._instances = self.initiator.initialize_problem()
         return self._instances
 

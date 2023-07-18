@@ -31,25 +31,21 @@ def parse_prob_name(id: str) -> Tuple[str, int, int | None]:
     dim = int(dim) if dim is not None else 1
     ver = int(ver) if ver is not None else None
     
-
-    
     return name, dim, ver
     
 
-def _check_registry_exists(name: str) -> bool:
+def check_bpp_registered(name: str) -> bool:
     return name in bpp_registry
 
 def _check_spec_register(testing_spec: ProblemSpec) -> bool:
-    is_registered = _check_registry_exists(testing_spec.name)
-
-    return not is_registered
+    return not check_bpp_registered(testing_spec.name)
 
 def register_bpp(problem: Problem):
     assert problem.spec is not None and problem.spec.name != ""
     bpp_registry[problem.spec.name] = problem
 
 def make_bpp(id: str, spec: ProblemSpec | None = None, initiator: ProblemInitiator | None = None):
-    if _check_registry_exists(id):
+    if check_bpp_registered(id):
         return bpp_registry[id]
     else:
         assert initiator is not None, \
