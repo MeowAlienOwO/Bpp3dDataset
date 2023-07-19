@@ -59,8 +59,9 @@ def test_random_problem(tmp_path: Path) -> None:
             assert problem[i][j] == problem2[i][j]
 
 def test_make_problem() -> None:
-    make_bpp("Discrete1D")
-    make_bpp("Normal1D")
-    make_bpp("Uniform1D")
+    make_bpp("Discrete-1D")
+    make_bpp("Normal-1D")
+    make_bpp("Uniform-1D")
 
+    make_bpp("Set1Set2Set3-1D")
     

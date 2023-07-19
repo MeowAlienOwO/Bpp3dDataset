@@ -1,4 +1,5 @@
 from abc import abstractclassmethod
+from typing import Dict
 
 class Distribution(object):
     """Distributions for sampling items
@@ -25,3 +26,6 @@ class Distribution(object):
         raise NotImplementedError
 
 
+    @property
+    def prob_dict(self) -> Dict:
+        raise NotImplementedError

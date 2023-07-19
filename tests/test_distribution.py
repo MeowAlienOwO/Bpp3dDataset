@@ -1,6 +1,6 @@
 import pytest
 
-from bpp3d_dataset.utils.distributions.discrete import generate_discrete
+from bpp3d_dataset.utils.distributions.discrete import generate_discrete_dist
 
 from bpp3d_dataset.utils.distributions import Uniform, Binomial, Poisson, Discrete
 ITEM = [1, 2, 3, 4, 5]
@@ -16,7 +16,7 @@ ITEM = [1, 2, 3, 4, 5]
     
 )
 def test_distributions(dist, items, type, kwargs):
-    distr = generate_discrete(items, dist=dist, **kwargs)
+    distr = generate_discrete_dist(items, dist=dist, **kwargs)
     assert isinstance(distr, type)
 
     

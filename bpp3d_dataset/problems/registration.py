@@ -1,14 +1,16 @@
 from typing import Dict, Tuple
 from .problem import Problem, ProblemSpec
-from .initiator import ProblemInitiator
-
+from .initiator import Bpp1DJsonInitiator, ProblemInitiator
+from pathlib import Path
 import re
 
-PROB_ID_RE = re.compile(r"^(?P<name>[\w]+?)(?P<dim>\d+)D(?:-v(?P<version>\d+))?$")
+PROB_ID_RE = re.compile(r"^(?P<name>[\w]+?)-(?P<dim>\d+)D(?:-v(?P<version>\d+))?$")
 
 # global problem registry, similar to gym global registry
 bpp_registry: Dict[str, Problem] = {} 
-
+_data_paths  = [ 
+                    Path(__file__).parent.parent.absolute() / "data"
+                ]
 
 def parse_prob_name(id: str) -> Tuple[str, int, int | None]:
     
@@ -44,6 +46,9 @@ def register_bpp(problem: Problem):
     assert problem.spec is not None and problem.spec.name != ""
     bpp_registry[problem.spec.name] = problem
 
+def add_data_path(path: Path):
+    _data_paths.append(path)
+
 def make_bpp(id: str, spec: ProblemSpec | None = None, initiator: ProblemInitiator | None = None):
     if check_bpp_registered(id):
         return bpp_registry[id]
@@ -56,3 +61,8 @@ def make_bpp(id: str, spec: ProblemSpec | None = None, initiator: ProblemInitiat
             spec = ProblemSpec(id, dim=dim, type=f"{name}_{dim}d_v{version}")
         return Problem(initiator, spec)
 
+def register_all():
+
+    for data_path in _data_paths:
+        for fpath in data_path.glob('*.json'):
+            register_bpp(make_bpp(fpath.stem, initiator=Bpp1DJsonInitiator(fpath)))
