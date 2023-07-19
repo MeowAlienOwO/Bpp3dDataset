@@ -32,3 +32,8 @@ class Periodic(Distribution):
             return self.distrs[0].p(x)
         elif method == 'all':
             return sum([self.distrs[i].p(x) for i in range(len(self.distrs))]) / len(self.distrs)
+
+    @property
+    def prob_dict(self):
+        return {c: self.p(c) for c in self.items}
+    

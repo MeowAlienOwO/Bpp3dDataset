@@ -3,7 +3,7 @@ from pathlib import Path
 
 from typing import Dict, List
 from bpp3d_dataset.problems.bppinstance import BppInstance
-from bpp3d_dataset.utils.distributions import Discrete
+from bpp3d_dataset.utils.distributions.distribution import Distribution
 
 
 class ProblemInitiator(object):
@@ -64,7 +64,7 @@ class Bpp1DJsonInitiator(ProblemInitiator):
 
 class Bpp1DRandomInitiator(ProblemInitiator):
     def __init__(self, capacity: int, item_num: int, 
-                    instance_num: int, distribution: Discrete):
+                    instance_num: int, distribution: Distribution):
         """
 
         Args:

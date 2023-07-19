@@ -4,12 +4,14 @@ from typing import List, Optional
 import typer
 from typer import Argument, Option
 from typing_extensions import Annotated
+import random
+import numpy as np
 
-from bpp3d_dataset.utils.distributions.discrete import Discrete
-from .utils.problem_generation import discrete1d_generate, uniform1d_generate, normal1d_generate
+from bpp3d_dataset.utils.distributions.discrete import DEFAULT_1D_ITEMS
+from .utils.problem_generation import discrete1d_generate, discrete1d_periodic_generate
 from .problems.registration import bpp_registry
 
-DEFAULT_1D_ITEMS = [i for i in range(10, 60, 5)]
+# DEFAULT_1D_ITEMS = [i for i in range(10, 60, 5)]
 DEFAULT_1D_CAPACITY = 100
 DEFAULT_INSTANCE_NUM = 10
 
@@ -49,26 +51,55 @@ def dim1(distribution: Annotated[str, Argument(help="distribution name")] = DEFA
             instance_num:Annotated[int, Option("-I", "--num-inst", 
                                                 help="instance num")] = DEFAULT_INSTANCE_NUM,
             dir:Annotated[Path, Option("-d", "--dir", help="target data directory")] = DEFAULT_PATH,
-            file:Annotated[Optional[str], Option("-f", "--file", help="target data file name")] = None):
-    try:
-        if not os.path.exists(dir):
-            os.mkdir(dir)
+            file:Annotated[Optional[str], Option("-f", "--file", help="target data file name")] = None,
+            seed:Annotated[Optional[int], Option("-s", "--seed", help="seed")] = 42):
 
-        target_file = f"{distribution.capitalize()}1D.json" if not file else file
-        target = dir / target_file
+    random.seed(seed)
+    np.random.seed(seed)
+    # try:
+    if not os.path.exists(dir):
+        os.mkdir(dir)
 
-        if distribution.lower() == "uniform":
-            uniform1d_generate(capacity, items, item_num, instance_num, target)
-        elif distribution.lower() == "normal": 
-            normal1d_generate(capacity, items, item_num, instance_num, target)
-        elif distribution.lower() == "discrete": 
-            assert probs is not None and len(probs) == len(items)
-            discrete1d_generate(capacity, item_num, instance_num, Discrete(probs, items), target)
-        else:
-            raise NotImplementedError("Other distributions are not implemented yet.")
-    except Exception:
-        print("Generation Failed")
+    target_file = f"{distribution.capitalize()}1D.json" if not file else file
+    target = dir / target_file
+    discrete1d_generate(capacity, items, item_num, instance_num, distribution, target, probs=probs)
+
     
+@generate_app.command("periodic1d")
+def dim1_periodic(distributions: Annotated[Optional[List[str]], 
+                                            Argument(help="add distribution to list")],
+                    capacity:Annotated[int, Option("-C", "--capacity", 
+                                            help="bin capacity")] = DEFAULT_1D_CAPACITY,
+                    items:Annotated[List[int], Option("-i", "--item", 
+                                            help="item kinds in the problem")] = DEFAULT_1D_ITEMS,
+                    item_num:Annotated[int, Option("-N","--num-item", 
+                                                    help="item num per instance")] = DEFAULT_INSTANCE_ITEM_NUM,
+                    sample_step:Annotated[int, Option("-S","--sample-step", 
+                                                    help="item num per instance")] = DEFAULT_INSTANCE_ITEM_NUM,
+                    instance_num:Annotated[int, Option("-I", "--num-inst", 
+                                                        help="instance num")] = DEFAULT_INSTANCE_NUM,
+                    dir:Annotated[Path, Option("-d", "--dir", help="target data directory")] = DEFAULT_PATH,
+                    file:Annotated[Optional[str], Option("-f", "--file", help="target data file name")] = None,
+                    seed:Annotated[Optional[int], Option("-s", "--seed", help="seed")] = 42
+                    ): 
+    random.seed(seed)
+    np.random.seed(seed)
+    
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    target_file = "Periodic1D.json" if not file else file
+    target = dir / target_file
+    if not distributions:
+        print("no distribution specified")
+        return
+    
+    discrete1d_periodic_generate(capacity, items, item_num, sample_step, instance_num, distributions, target)
+
+
+
+
+
 
 @generate_app.command("2d")
 def dim2():

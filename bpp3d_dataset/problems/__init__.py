@@ -3,23 +3,10 @@ from .bppinstance import BppInstance
 from .storage import Storage, store_problem
 from .initiator import (ProblemInitiator, 
                         Bpp1DJsonInitiator, Bpp1DRandomInitiator)
-from .registration import register_bpp, make_bpp, check_bpp_registered
-from pathlib import Path
+from .registration import register_bpp, make_bpp, check_bpp_registered, add_data_path, register_all
 
-_data_path  = Path(__file__).parent.parent.absolute() / "data"
 
-register_bpp(make_bpp(
-    "Normal1D", 
-    initiator=Bpp1DJsonInitiator( _data_path / "Normal1D.json")
-    ))
-register_bpp(make_bpp(
-    "Uniform1D", 
-    initiator=Bpp1DJsonInitiator(_data_path / "Uniform1D.json")
-    ))
-register_bpp(make_bpp(
-    "Discrete1D", 
-    initiator=Bpp1DJsonInitiator(_data_path / "Discrete1D.json")
-    ))
+register_all()
 
 __all__ = [
     "Problem",
@@ -32,4 +19,6 @@ __all__ = [
     "ProblemInitiator",
     "Bpp1DJsonInitiator",
     "Bpp1DRandomInitiator",
+    'register_all',
+    'add_data_path'
 ]
