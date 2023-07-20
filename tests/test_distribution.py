@@ -16,7 +16,7 @@ ITEM = [1, 2, 3, 4, 5]
     
 )
 def test_distributions(dist, items, type, kwargs):
-    distr = generate_discrete_dist(items, dist=dist, **kwargs)
+    distr = generate_discrete_dist(items, dist_key=dist, **kwargs)
     assert isinstance(distr, type)
 
     

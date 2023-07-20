@@ -84,20 +84,22 @@ OR_GYM_PROBS = {
 
 
 def generate_discrete_dist(items: List = DEFAULT_1D_ITEMS, 
-                        dist: ValidDiscrete | str = ValidDiscrete.uniform, 
+                        dist_key: ValidDiscrete | str = ValidDiscrete.uniform, 
                         *args, **kwargs):
+    if "or-gym" in dist_key:
+        return generate_or_gym_dist(dist_key)
 
-    if dist == ValidDiscrete.uniform or dist == ValidDiscrete.set1:
+    elif dist_key == ValidDiscrete.uniform or dist_key == ValidDiscrete.set1:
         return Uniform(items)
-    elif dist == ValidDiscrete.normal or dist ==ValidDiscrete.set2:
+    elif dist_key == ValidDiscrete.normal or dist_key ==ValidDiscrete.set2:
         return Binomial(items)
-    elif dist == ValidDiscrete.binomial:
+    elif dist_key == ValidDiscrete.binomial:
         return Binomial(items, *args, **kwargs)
-    elif dist == ValidDiscrete.poission:
+    elif dist_key == ValidDiscrete.poission:
         return Poisson(items, *args, **kwargs)
-    elif dist == ValidDiscrete.set3:
+    elif dist_key == ValidDiscrete.set3:
         return Set3Discrete(items)
-    elif dist == ValidDiscrete.discrete:
+    elif dist_key == ValidDiscrete.discrete:
         # assert 'probs' in kwargs
         if 'probs' not in kwargs or not kwargs['probs'] :
             raise NotImplementedError

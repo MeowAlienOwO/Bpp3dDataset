@@ -60,4 +60,3 @@ class Problem:
     def __getitem__(self, key):
         return self.instances[key]
 
-
