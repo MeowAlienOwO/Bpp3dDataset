@@ -1,6 +1,6 @@
 [project]
 name = "bpp3d_dataset"
-version = "0.0.4"
+version = "0.2.2"
 authors = [
     { name = "Zhang Huayan", email = "huayan.zhang@nottingham.edu.cn"}
 ]
@@ -59,7 +59,7 @@ ignore_missing_imports = true
 
 [tool.poetry]
 name = "bpp3d_dataset"
-version = "0.2.1"
+version = "0.2.2"
 description = ""
 authors = ["Huayan Zhang <huayan.zhang@nottingham.edu.cn>"]
 readme = "README.md"

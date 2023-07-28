@@ -8,9 +8,6 @@ class ProblemSpec(NamedTuple):
     dim: int = 1
     type: str | None = None
 
-
-
-
 class Problem:
     """Problem Basic Class
     A problem contains a series of immutable problem
