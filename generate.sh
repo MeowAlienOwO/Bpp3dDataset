@@ -30,4 +30,4 @@ python -m bpp3d_dataset.main generate 1d or-gym-bw1 -C 9 -N 1000 -I 100 -d bpp3d
 
 python -m bpp3d_dataset.main generate periodic1d uniform normal -C 100 -N 3000 -S 300 -I 100 -d bpp3d_dataset/data -f "Set1Set2-1D.json"
 python -m bpp3d_dataset.main generate periodic1d uniform set3 -C 100 -N 3000 -S 300 -I 100 -d bpp3d_dataset/data -f "Set1Set3-1D.json"
-python -m bpp3d_dataset.main generate periodic1d uniform set3 -C 100 -N 3000 -S 300 -I 100 -d bpp3d_dataset/data -f "Set1Set2Set3-1D.json"
+python -m bpp3d_dataset.main generate periodic1d uniform normal set3 -C 100 -N 3000 -S 300 -I 100 -d bpp3d_dataset/data -f "Set1Set2Set3-1D.json"
