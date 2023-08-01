@@ -22,9 +22,9 @@ python -m bpp3d_dataset.main generate 1d set3 -C 100 -N 3000 -I 100 -d bpp3d_dat
 python -m bpp3d_dataset.main generate 1d or-gym-lw0 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymLW0-1D.json"
 python -m bpp3d_dataset.main generate 1d or-gym-pp0 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymPP0-1D.json"
 python -m bpp3d_dataset.main generate 1d or-gym-bw0 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymBW0-1D.json"
-python -m bpp3d_dataset.main generate 1d or-gym-lw1 -C 100 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymLW1-1D.json"
-python -m bpp3d_dataset.main generate 1d or-gym-pp1 -C 100 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymPP1-1D.json"
-python -m bpp3d_dataset.main generate 1d or-gym-bw1 -C 100 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymBW1-1D.json"
+python -m bpp3d_dataset.main generate 1d or-gym-lw1 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymLW1-1D.json"
+python -m bpp3d_dataset.main generate 1d or-gym-pp1 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymPP1-1D.json"
+python -m bpp3d_dataset.main generate 1d or-gym-bw1 -C 9 -N 1000 -I 100 -d bpp3d_dataset/data -f "OrGymBW1-1D.json"
 
 
 
