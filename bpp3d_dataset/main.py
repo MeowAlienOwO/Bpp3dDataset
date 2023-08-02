@@ -42,6 +42,7 @@ def list_1d_problems():
 @generate_app.command("1d")
 def dim1(distribution: Annotated[str, Argument(help="distribution name")] = DEFAULT_DISTRIBUTION, 
             items:Annotated[List[int], Option("-i", "--item", help="item kinds in the problem")] = DEFAULT_1D_ITEMS,
+            item_range: Annotated[Optional[List[int]], Option("--ir", "--item-range", help="item range")] = None,
             probs:Annotated[Optional[List[float]], Option("-p", "--prob", 
                                                         help="probability list")] = None,
             capacity:Annotated[int, Option("-C", "--capacity", 
@@ -62,6 +63,8 @@ def dim1(distribution: Annotated[str, Argument(help="distribution name")] = DEFA
 
     target_file = f"{distribution.capitalize()}1D.json" if not file else file
     target = dir / target_file
+    if item_range:
+        items = list(range(item_range[0], item_range[1]))
     discrete1d_generate(capacity, items, item_num, instance_num, distribution, target, probs=probs)
 
     
