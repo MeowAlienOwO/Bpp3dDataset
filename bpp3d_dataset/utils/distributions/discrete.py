@@ -9,7 +9,7 @@ class ValidDiscrete(str, Enum):
     uniform = 'uniform'
     normal = 'normal'
     binomial = 'binomial'
-    poission = 'poission'
+    poisson = 'poisson'
     set1 = 'set1'
     set2 = 'set2'
     set3 = 'set3'
@@ -54,7 +54,7 @@ class Binomial(Discrete):
         super(Binomial, self).__init__(probs, items)
 
 class Poisson(Binomial):
-    def __init__(self, items, mu):
+    def __init__(self, items, mu=3):
 
         probs = [poisson.pmf(i, mu) for i in range(len(items))]
         probs = [ p / sum(probs) for p in probs]
@@ -95,8 +95,14 @@ def generate_discrete_dist(items: List = DEFAULT_1D_ITEMS,
         return Binomial(items)
     elif dist_key == ValidDiscrete.binomial:
         return Binomial(items, *args, **kwargs)
-    elif dist_key == ValidDiscrete.poission:
-        return Poisson(items, *args, **kwargs)
+    elif dist_key == ValidDiscrete.poisson:
+        mu = 3
+        if 'lambda' in kwargs:
+            mu = kwargs['lambda']
+        elif 'mu' in kwargs:
+            mu = kwargs['mu']
+
+        return Poisson(items, mu=mu)
     elif dist_key == ValidDiscrete.set3:
         return Set3Discrete(items)
     elif dist_key == ValidDiscrete.discrete:

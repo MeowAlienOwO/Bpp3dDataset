@@ -10,7 +10,7 @@ PROB_ID_RE = re.compile(r"^(?P<name>[\w]+?)-(?P<dim>\d+)D(?:-v(?P<version>\d+))?
 # global problem registry, similar to gym global registry
 bpp_registry: Dict[str, Problem] = {} 
 _SWH_PATHS = [
-    Path(__file__).parent.parent.absolute() / "data" / "waescher",
+    Path(__file__).parent.parent.absolute() / "data" / "waescher" ,
     Path(__file__).parent.parent.absolute() / "data" / "schwerin",
     Path(__file__).parent.parent.absolute() / "data" / "hard28",
 ]
@@ -76,7 +76,7 @@ def make_bpp(id: str, spec: ProblemSpec | None = None, initiator: ProblemInitiat
 def _register_swh():
     for data_path in _SWH_PATHS:
         for fpath in data_path.glob("*.bpp"):
-            register_bpp(make_bpp(fpath.stem, initiator=Bpp1DSWHInitiator(fpath))) 
+            register_bpp(make_bpp(fpath.stem + "-1D", initiator=Bpp1DSWHInitiator(fpath))) 
 
 def _register_dual():
     for dir in _DUAL_TEST.iterdir():

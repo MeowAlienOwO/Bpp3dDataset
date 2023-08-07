@@ -33,7 +33,7 @@ class Bpp1DSWHInitiator(ProblemInitiator):
                 sequence = []
                 for item_line in group[3:]:
                     item, num = tuple(item_line.split())
-                    sequence += [item] * num
+                    sequence += [int(item)] * int(num)
                 config = {
                     "name": group[0],
                     "item_num": int(group[1]),
