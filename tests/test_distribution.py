@@ -9,7 +9,7 @@ ITEM = [1, 2, 3, 4, 5]
         ('uniform', ITEM, Uniform, {}),
         ('normal', ITEM, Binomial, {}),
         ('binomial', ITEM, Binomial, {'p': 0.6}),
-        ('poission', ITEM, Poisson, {'mu': 0.7}),
+        ('poisson', ITEM, Poisson, {'mu': 0.7}),
         ('discrete', ITEM, Discrete, {'probs': [0.2, 0.2, 0.3, 0.15, 0.15]}),
     ]
 
