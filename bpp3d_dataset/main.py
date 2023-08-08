@@ -33,16 +33,23 @@ def list_all_problems():
     """
     print(list(bpp_registry.keys()))
 
-@list_app.command("1d")
-def list_1d_problems():
+# @list_app.command("1d")
+# def list_1d_problems():
+#     """List registered 1d problems
+#     """
+#     print(list(k for k in bpp_registry.keys() if "1D" in k))
+    
+@list_app.command("search")
+def list_1d_problems(keyworkd: str):
     """List registered 1d problems
     """
-    print(list(k for k in bpp_registry.keys() if "1D" in k))
+    print(list(k for k in bpp_registry.keys() if keyworkd in k))
 
 @generate_app.command("1d")
 def dim1(distribution: Annotated[str, Argument(help="distribution name")] = DEFAULT_DISTRIBUTION, 
             items:Annotated[List[int], Option("-i", "--item", help="item kinds in the problem")] = DEFAULT_1D_ITEMS,
             item_range: Annotated[Optional[List[int]], Option("--ir", "--item-range", help="item range")] = None,
+            item_step: Annotated[Optional[int], Option("--is", "--item-step", help="item step")] = 1,
             probs:Annotated[Optional[List[float]], Option("-p", "--prob", 
                                                         help="probability list")] = None,
             capacity:Annotated[int, Option("-C", "--capacity", 
@@ -64,7 +71,7 @@ def dim1(distribution: Annotated[str, Argument(help="distribution name")] = DEFA
     target_file = f"{distribution.capitalize()}1D.json" if not file else file
     target = dir / target_file
     if item_range:
-        items = list(range(item_range[0], item_range[1]))
+        items = list(range(item_range[0], item_range[1], item_step))
     discrete1d_generate(capacity, items, item_num, instance_num, distribution, target, probs=probs)
 
     

@@ -82,7 +82,7 @@ def _register_dual():
     for dir in _DUAL_TEST.iterdir():
         register_bpp(make_bpp(f"Dual{dir.name.capitalize()}-1D",
                                 initiator=Bpp1DDualNormalInitiator(dir)))
-    register_bpp(make_bpp(f"DualTrain-1D", initiator=Bpp1DDualNormalInitiator(_DUAL_TRAIN)))
+    register_bpp(make_bpp("DualTrain-1D", initiator=Bpp1DDualNormalInitiator(_DUAL_TRAIN)))
     
 
 

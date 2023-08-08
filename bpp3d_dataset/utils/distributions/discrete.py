@@ -58,7 +58,6 @@ class Poisson(Binomial):
 
         probs = [poisson.pmf(i, mu) for i in range(len(items))]
         probs = [ p / sum(probs) for p in probs]
-        print("Poission Probs", probs)
         super(Binomial, self).__init__(probs, items)
 
 # Predefined
