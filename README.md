@@ -1,36 +1,31 @@
 
+A dataset for 1D-3D Bin Packing Problems.
 
-3D BPP 数据集部分
-
-# Features
-数据导出
-- [ ] 提供结构化的数据文本文件供后续处理
-- [ ] 提供读写数据的module
-
-数据生成
-- [ ] 将不同类型的数据集转化为统一格式
-    - [ ] (TODO 数据集)
-- [ ] 随机生成的数据
-    - [ ] 存储数据
-
-接口
-- [ ] 命令行
-- [ ] 模块导入
-
+Currently, the package contains only 1D bin packing problem instances.
 
 # How to use
 
-## Install
+
+## Installation
 
 ```bash
-python -m pip install .
+
+pip install poetry
+poetry install
 ```
 
-# Development
+## Command Line Interface
 
-- POSIX环境(Unix/Linux)或者Docker环境, Windows下开发请使用WSL/Docker
-- 遵循 PEP8 规范, 使用 `ruff` 作为linter 
-- 避免使用`sys.path.append`, 使用临时的变量替代: `export PYTHONPATH="YOUR/PATH:$PYTHONPATH"` 或者走包安装流程
+Show the problem included in package
+```bash
+python -m bpp3d_dataset.main list all
 
+```
+
+Generate a series of problem instances
+
+```bash
+python -m bpp3d_dataset.main generate 1d uniform -C 100 -N 1000 -I 100 -d your/directory -f "Problem-Name.json"
+```
 
 
